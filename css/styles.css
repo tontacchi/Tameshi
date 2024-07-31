@@ -1,0 +1,66 @@
+:root {
+    --font-family-japanese: "Hiragino Kaku Gothic Pro", "Meiryo", "Source Han Sans Japanese", "NotoSansCJK", "TakaoPGothic", "Yu Gothic", "ヒラギノ角ゴ Pro W3", "メイリオ", "Osaka", "MS PGothic", "ＭＳ Ｐゴシック", "Noto Sans JP", "PingFang SC", "Noto Sans SC", sans-serif;
+}
+
+html {
+    height: 99%;
+    width: 1vp;
+    padding: 0px;
+    margin: 0px;
+
+    background-color: black;
+    color: lightgray;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    min-height: 100vh;
+    
+    margin: 0;
+    
+    display: flex;
+    justify-content: center;
+}
+
+.jp-test {
+    font-family: var(--font-family-japanese);
+}
+
+.en-test {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.content-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+
+    flex-direction: row;
+}
+
+.question-box {
+    font-family: "Noto Sans JP", sans-serif;
+    font-size: 40px;
+
+    margin-bottom: 10px;
+
+    text-align: center;
+
+    /* writing-mode: vertical-rl;
+    text-orientation: upright; */
+}
+
+.response {
+    background-color: black;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+
+    padding: 10px;
+}
+
+input[type="text"] {
+    color: lightgray;
+    font-size: 32px;
+    text-align: center;
+}
