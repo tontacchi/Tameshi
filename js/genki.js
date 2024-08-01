@@ -247,25 +247,36 @@ function forceLastHiraganaN(inputEvent) {
 
 //---[ Utility ]---------------------------------------------------------------
 /**
- * Creates & returns new Question object w/ English answer
+ * Japanese Question w/ English response
  * 
  * @param {string} question 
  * @param {string[]} answersList
  * @returns {Question} new Question w/ "en" as responseLang
  */
-function makeEnQ(question, answersList) {
+function en(question, answersList) {
     return new Question(question, answersList, "en");
 }
 
 /**
- * Creates & returns new Question object w/ Japanese answer
+ * English Question w/ Hiragana response
  * 
  * @param {string} question 
  * @param {string[]} answersList 
  * @returns {Question} new Question w/ "jp" as responseLang
  */
-function makeJpQ(question, answersList) {
+function jp(question, answersList) {
     return new Question(question, answersList, "jp");
+}
+
+/**
+ * English Question w/ Katakana response
+ * 
+ * @param {string} question 
+ * @param {string[]} answersList 
+ * @returns 
+ */
+function ka(question, answersList) {
+    return new Question(question, answersList, "katakana");
 }
 
 /**
@@ -505,6 +516,9 @@ function getHiraganaMap() {
     return hiraganaReplaceMap;
 }
 
+/**
+ * @returns {Map<string, string>} katakanaMap
+ */
 function getKatakanaMap() {
     const katakanaReplaceMap = {
         "-": "ー",
@@ -533,68 +547,68 @@ function getKatakanaMap() {
         "ggyu": "ッギュ",
         "ggyo": "ッギョ",
         "ssha": "ッシャ",
-        "sshu": "ッしゅ",
-        "ssho": "ッしょ",
-        "jja": "ッじゃ",
-        "jju": "ッじゅ",
-        "jjo": "ッじょ",
-        "ccha": "ッちゃ",
-        "cchu": "ッちゅ",
-        "ccho": "ッちょ",
-        "nnya": "ッにゃ",
-        "nnyu": "ッにゅ",
-        "nnyo": "ッにょ",
-        "hhya": "ッひゃ",
-        "hhyu": "ッひゅ",
-        "hhyo": "ッひょ",
-        "bbya": "ッびゃ",
-        "bbyu": "ッびゅ",
-        "bbyo": "ッびょ",
-        "ppya": "ッぴゃ",
-        "ppyu": "ッぴゅ",
-        "ppyo": "ッぴょ",
-        "mmya": "ッみゃ",
-        "mmyu": "ッみゅ",
-        "mmyo": "ッみょ",
-        "rrya": "ッりゃ",
-        "rryu": "ッりゅ",
-        "rryo": "ッりょ",
-        "kka": "ッか",
-        "kki": "ッき",
-        "kku": "ッく",
-        "kke": "ッけ",
-        "kko": "ッこ",
-        "gga": "ッが",
-        "ggi": "ッぎ",
-        "ggu": "ッぐ",
-        "gge": "ッげ",
-        "ggo": "ッご",
-        "ssa": "ッさ",
-        "sshi": "ッし",
-        "ssu": "ッす",
-        "sse": "ッせ",
-        "sso": "ッそ",
-        "zza": "ッざ",
-        "jji": "ッじ",
-        "zzu": "ッず",
-        "zze": "ッぜ",
-        "zzo": "ッぞ",
-        "tta": "ッた",
-        "cchi": "ッち",
-        "ttsu": "ッつ",
-        "tte": "ッて",
-        "tto": "ッと",
-        "dda": "ッだ",
-        "ddi": "ッぢ",
-        "ddu": "ッづ",
-        "dde": "ッで",
-        "ddo": "ッど",
-        "nna": "ッな",
-        "nni": "ッに",
-        "nnu": "ッぬ",
-        "nne": "ッね",
-        "nno": "ッの",
-        "hha": "ッは",
+        "sshu": "ッシュ",
+        "ssho": "ッショ",
+        "jja": "ッジャ",
+        "jju": "ッジュ",
+        "jjo": "ッジョ",
+        "ccha": "ッチャ",
+        "cchu": "ッチュ",
+        "ccho": "ッチョ",
+        "nnya": "ッニャ",
+        "nnyu": "ッニュ",
+        "nnyo": "ッニョ",
+        "hhya": "ッヒャ",
+        "hhyu": "ッヒュ",
+        "hhyo": "ッヒョ",
+        "bbya": "ッビャ",
+        "bbyu": "ッビュ",
+        "bbyo": "ッビョ",
+        "ppya": "ッピャ",
+        "ppyu": "ッピュ",
+        "ppyo": "ッピョ",
+        "mmya": "ッミャ",
+        "mmyu": "ッミュ",
+        "mmyo": "ッミョ",
+        "rrya": "ッリャ",
+        "rryu": "ッリュ",
+        "rryo": "ッリョ",
+        "kka": "ッカ",
+        "kki": "ッキ",
+        "kku": "ック",
+        "kke": "ッケ",
+        "kko": "ッコ",
+        "gga": "ッガ",
+        "ggi": "ッギ",
+        "ggu": "ッグ",
+        "gge": "ッゲ",
+        "ggo": "ッゴ",
+        "ssa": "ッサ",
+        "sshi": "ッシ",
+        "ssu": "ッス",
+        "sse": "ッセ",
+        "sso": "ッソ",
+        "zza": "ッザ",
+        "jji": "ッジ",
+        "zzu": "ッズ",
+        "zze": "ッゼ",
+        "zzo": "ッゾ",
+        "tta": "ッタ",
+        "cchi": "ッチ",
+        "ttsu": "ッツ",
+        "tte": "ッテ",
+        "tto": "ット",
+        "dda": "ッダ",
+        "ddi": "ッヂ",
+        "ddu": "ッヅ",
+        "dde": "ッデ",
+        "ddo": "ッド",
+        "nna": "ッナ",
+        "nni": "ッニ",
+        "nnu": "ッヌ",
+        "nne": "ッネ",
+        "nno": "ッノ",
+        "hha": "ッは",  // TODO: fix from here
         "hhi": "ッひ",
         "ffu": "ッふ",
         "hhe": "ッへ",
@@ -715,22 +729,22 @@ function getKatakanaMap() {
         "mu": "む",
         "me": "め",
         "mo": "も",
-        "ya": "や",
-        "yu": "ゆ",
-        "yo": "よ",
-        "ra": "ら",
-        "ri": "り",
-        "ru": "る",
-        "re": "れ",
-        "ro": "ろ",
-        "wa": "わ",
-        "wo": "を",
-        "nn": "ん",
+        "ya": "ヤ",
+        "yu": "ユ",
+        "yo": "ヨ",
+        "ra": "ラ",
+        "ri": "リ",
+        "ru": "ル",
+        "re": "レ",
+        "ro": "ロ",
+        "wa": "ワ",
+        "wo": "ヲ",
+        "nn": "ン",
         "a": "ア",
-        "i": "い",
-        "u": "う",
-        "e": "え",
-        "o": "お"
+        "i": "イ",
+        "u": "ウ",
+        "e": "エ",
+        "o": "オ"
     };
 
     return katakanaReplaceMap;
@@ -777,9 +791,9 @@ function getGreetings() {
  */
 function getNumbers() {
     const hiraganaList0To100 = [
-        makeEnQ("ゼロ", ["0", "zero"]),
-        makeEnQ("れい", ["0", "zero"]),
-        makeEnQ("いち", ["1", "one"]),
+        en("ゼロ", ["0", "zero"]),
+        en("れい", ["0", "zero"]),
+        en("いち", ["1", "one"]),
         new Question("に", ["2", "two"], "en"),
         new Question("さん", ["3", "three"], "en"),
         new Question("よん", ["4", "four"], "en"),
@@ -793,77 +807,77 @@ function getNumbers() {
         new Question("きゅう", ["9", "nine"], "en"),
         new Question("く", ["9", "nine"], "en"),
         new Question("じゅう", ["10", "ten"], "en"),
-        makeEnQ("じゅういち", ["11", "eleven"]),
-        makeEnQ("じゅうに", ["12", "twelve"]),
-        makeEnQ("じゅうさん", ["13", "thirteen"]),
-        makeEnQ("じゅうよん", ["14", "fourteen"]),
-        makeEnQ("じゅうし", ["14", "fourteen"]),
-        makeEnQ("じゅうご", ["15", "fifteen"]),
-        makeEnQ("じゅうろく", ["16", "sixteen"]),
-        makeEnQ("じゅうなな", ["17", "seventeen"]),
-        makeEnQ("じゅうしち", ["17", "seventeen"]),
-        makeEnQ("じゅうはち", ["18", "eighteen"]),
-        makeEnQ("じゅうきゅう", ["19", "nineteen"]),
-        makeEnQ("じゅうく", ["19", "nineteen"]),
-        makeEnQ("にじゅう", ["20", "twenty"]),
-        makeEnQ("さんじゅう", ["30", "thirty"]),
-        makeEnQ("よんじゅう", ["40", "fourty"]),
-        makeEnQ("ごじゅう", ["50", "fifty"]),
-        makeEnQ("ろくじゅう", ["60", "sixty"]),
-        makeEnQ("ななじゅう", ["70", "seventy"]),
-        makeEnQ("はちじゅう", ["80", "eighty"]),
-        makeEnQ("きゅうじゅう", ["90", "ninty"]),
-        makeEnQ("ひゃく", ["100", "one hundred"]),
+        en("じゅういち", ["11", "eleven"]),
+        en("じゅうに", ["12", "twelve"]),
+        en("じゅうさん", ["13", "thirteen"]),
+        en("じゅうよん", ["14", "fourteen"]),
+        en("じゅうし", ["14", "fourteen"]),
+        en("じゅうご", ["15", "fifteen"]),
+        en("じゅうろく", ["16", "sixteen"]),
+        en("じゅうなな", ["17", "seventeen"]),
+        en("じゅうしち", ["17", "seventeen"]),
+        en("じゅうはち", ["18", "eighteen"]),
+        en("じゅうきゅう", ["19", "nineteen"]),
+        en("じゅうく", ["19", "nineteen"]),
+        en("にじゅう", ["20", "twenty"]),
+        en("さんじゅう", ["30", "thirty"]),
+        en("よんじゅう", ["40", "fourty"]),
+        en("ごじゅう", ["50", "fifty"]),
+        en("ろくじゅう", ["60", "sixty"]),
+        en("ななじゅう", ["70", "seventy"]),
+        en("はちじゅう", ["80", "eighty"]),
+        en("きゅうじゅう", ["90", "ninty"]),
+        en("ひゃく", ["100", "one hundred"]),
     ];
 
     const arabicList0to100 = [
-        makeJpQ("0", ["ぜろ", "れい"]),
-        makeJpQ("1", ["いち"]),
-        makeJpQ("2", ["に"]),
-        makeJpQ("3", ["さん"]),
-        makeJpQ("4", ["よん", "し", "よ"]),
-        makeJpQ("5", ["ご"]),
-        makeJpQ("6", ["ろく"]),
-        makeJpQ("7", ["なな", "しち"]),
-        makeJpQ("8", ["はち"]),
-        makeJpQ("9", ["きゅう", "く"]),
-        makeJpQ("10", ["じゅう"]),
-        makeJpQ("11", ["じゅういち"]),
-        makeJpQ("12", ["じゅうに"]),
-        makeJpQ("13", ["じゅうさん"]),
-        makeJpQ("14", ["じゅうよん", "じゅうし"]),
-        makeJpQ("15", ["じゅうご"]),
-        makeJpQ("16", ["じゅうろく"]),
-        makeJpQ("17", ["じゅうなな", "じゅうしち"]),
-        makeJpQ("18", ["じゅうはち"]),
-        makeJpQ("19", ["じゅうきゅう", "じゅうく"]),
-        makeJpQ("20", ["にじゅう"]),
-        makeJpQ("30", ["さんじゅう"]),
-        makeJpQ("40", ["よんじゅう"]),
-        makeJpQ("50", ["ごじゅう"]),
-        makeJpQ("60", ["ろくじゅう"]),
-        makeJpQ("70", ["ななじゅう"]),
-        makeJpQ("80", ["はちじゅう"]),
-        makeJpQ("90", ["きゅうじゅう"]),
-        makeJpQ("100", ["ひゃく"]),
+        jp("0", ["ぜろ", "れい"]),
+        jp("1", ["いち"]),
+        jp("2", ["に"]),
+        jp("3", ["さん"]),
+        jp("4", ["よん", "し", "よ"]),
+        jp("5", ["ご"]),
+        jp("6", ["ろく"]),
+        jp("7", ["なな", "しち"]),
+        jp("8", ["はち"]),
+        jp("9", ["きゅう", "く"]),
+        jp("10", ["じゅう"]),
+        jp("11", ["じゅういち"]),
+        jp("12", ["じゅうに"]),
+        jp("13", ["じゅうさん"]),
+        jp("14", ["じゅうよん", "じゅうし"]),
+        jp("15", ["じゅうご"]),
+        jp("16", ["じゅうろく"]),
+        jp("17", ["じゅうなな", "じゅうしち"]),
+        jp("18", ["じゅうはち"]),
+        jp("19", ["じゅうきゅう", "じゅうく"]),
+        jp("20", ["にじゅう"]),
+        jp("30", ["さんじゅう"]),
+        jp("40", ["よんじゅう"]),
+        jp("50", ["ごじゅう"]),
+        jp("60", ["ろくじゅう"]),
+        jp("70", ["ななじゅう"]),
+        jp("80", ["はちじゅう"]),
+        jp("90", ["きゅうじゅう"]),
+        jp("100", ["ひゃく"]),
     ];
 
     const kanjiList = [
-        makeJpQ("ゼロ", ["ぜろ"]),
-        makeJpQ("一", ["いち"], "jp"),
-        makeJpQ("二", ["に"], "jp"),
-        makeJpQ("三", ["さん"]),
-        makeJpQ("四", ["よん", "し", "よ"]),
-        makeJpQ("五", ["ご"]),
-        makeJpQ("六", ["ろく"]),
-        makeJpQ("七", ["なな", "しち"]),
-        makeJpQ("八", ["はち"]),
-        makeJpQ("九", ["きゅう", "く"]),
-        makeJpQ("十", ["じゅう"]),
-        makeJpQ("十一", ["じゅういち"]),
-        makeJpQ("十二", ["じゅうに"]),
-        makeJpQ("十三", ["じゅうさん"]),
-        makeJpQ("十四", ["じゅうよん", "じゅうし"]),
+        jp("ゼロ", ["ぜろ"]),
+        jp("一", ["いち"], "jp"),
+        jp("二", ["に"], "jp"),
+        jp("三", ["さん"]),
+        jp("四", ["よん", "し", "よ"]),
+        jp("五", ["ご"]),
+        jp("六", ["ろく"]),
+        jp("七", ["なな", "しち"]),
+        jp("八", ["はち"]),
+        jp("九", ["きゅう", "く"]),
+        jp("十", ["じゅう"]),
+        jp("十一", ["じゅういち"]),
+        jp("十二", ["じゅうに"]),
+        jp("十三", ["じゅうさん"]),
+        jp("十四", ["じゅうよん", "じゅうし"]),
 
     ];
 
@@ -879,49 +893,48 @@ function getNumbers() {
  */
 function getNames() {
     const namesList = [
-        makeEnQ("メアリー", ["mary"]),
-        makeEnQ("ハト", ["hart"]),
-        makeEnQ("メアリー・ハト", ["mary hart"]),
-        makeEnQ("たけし", ["takeshi"]),
-        makeEnQ("きむら", ["kimura"]),
-        makeEnQ("きむらたけし", ["kimura takeshi"]),
-        makeEnQ("木村", ["kimura"]),
-        makeEnQ("木村たけし", ["kimura takeshi"]),
+        en("メアリー", ["mary"]),
+        en("ハト", ["hart"]),
+        en("メアリー・ハト", ["mary hart"]),
+        en("たけし", ["takeshi"]),
+        en("きむら", ["kimura"]),
+        en("きむらたけし", ["kimura takeshi"]),
+        en("木村", ["kimura"]),
+        en("木村たけし", ["kimura takeshi"]),
         new Question("ロバート", ["robert"], "en"),
-        makeEnQ("スミス", ["smith"]),
+        en("スミス", ["smith"]),
         new Question("ロバート・スミス", ["robert smith"], "en"),
         new Question("キム", ["kim"], "en"),
-        makeEnQ("ソラ", ["sora"]),
+        en("ソラ", ["sora"]),
         new Question("ソラ・キム", ["sora kim"], "en"),
-        makeEnQ("やました", ["yamashita"]),
-        makeEnQ("山下", ["yamashita"]),
-        makeEnQ("せんせい", ["sensei"]),
-        makeEnQ("先生", ["sensei"]),
+        en("やました", ["yamashita"]),
+        en("山下", ["yamashita"]),
+        en("せんせい", ["sensei"]),
+        en("先生", ["sensei"]),
         new Question("やましたせんせい", ["yamashita sensei"], "en"),
         new Question("山下先生", ["yamashita sensei"], "en"),
         new Question("ジョン", ["john"], "en"),
         new Question("ワン", ["wang"], "en"),
         new Question("ジョン・ワン", ["john wang"], "en"),
-        makeEnQ("けん", ["ken"]),
-        makeEnQ("健", ["ken"]),
-        makeEnQ("すずき", ["suzuki"]),
-        makeEnQ("鈴木", ["suzuki"]),
+        en("けん", ["ken"]),
+        en("健", ["ken"]),
+        en("すずき", ["suzuki"]),
+        en("鈴木", ["suzuki"]),
         new Question("すずきけん", ["suzuki ken"], "en"),
         new Question("鈴熊健", ["suzuki ken"], "en"),
-        makeEnQ("ゆい", ["yui"]),
-        makeEnQ("やまかわ", ["yamakawa"]),
-        makeEnQ("山川", ["yamakawa"]),
+        en("ゆい", ["yui"]),
+        en("やまかわ", ["yamakawa"]),
+        en("山川", ["yamakawa"]),
         new Question("やまかわゆい", ["yamakawa yui"], "en"),
         new Question("山川ゆい", ["yamakawa yui"], "en"),
-        makeEnQ("おとうさん", ["father", "dad"]),
+        en("おとうさん", ["father", "dad"]),
         new Question("お父さん", ["father", "dad"], "en"),
-        makeEnQ("おかあさん", ["mother", "mom"]),
+        en("おかあさん", ["mother", "mom"]),
         new Question("お母さん", ["mother", "mom"], "en")
     ];
 
     return namesList;
 }
-
 
 // Lesson Content
 function getLesson1() {
@@ -930,10 +943,10 @@ function getLesson1() {
         new Question("～ねんせい", ["year student", "...year student"], "en"),
         new Question("せんこう", ["major"], "en"),
 
-        makeJpQ("teacher", ["せんせい"]),
-        makeJpQ("professor", ["せんせい"]),
-        makeJpQ("...year student", ["ねんせい"]),
-        makeJpQ("major", ["せんこう"]),
+        jp("teacher", ["せんせい"]),
+        jp("professor", ["せんせい"]),
+        jp("...year student", ["ねんせい"]),
+        jp("major", ["せんこう"]),
     ];
 
     const institutionList = [
@@ -954,7 +967,7 @@ function getLesson1() {
         new Question("じょしこうせい", ["female high school student", "high school girl", "female high schooler"], "en"),
         new Question("だいがくせい",   ["college student", "university student"], "en"),
         new Question("りゅうがくせい", ["international student", "exchange student"], "en"),
-        makeEnQ("だいがくいんせ", ["graduate student", "grad student"]),
+        en("だいがくいんせ", ["graduate student", "grad student"]),
     ];
 
     const personList = [
@@ -979,18 +992,18 @@ function getLesson1() {
     ];
 
     const clockList = [
-        makeEnQ("いちじ", ["1:00"]),
-        makeEnQ("にじ", ["2:00"]),
-        makeEnQ("さんじ", ["3:00"]),
-        makeEnQ("よじ", ["4:00"]),
-        makeEnQ("ごじ", ["5:00"]),
-        makeEnQ("ろくじ", ["6:00"]),
-        makeEnQ("しちじ", ["7:00"]),
-        makeEnQ("はちじ", ["8:00"]),
-        makeEnQ("くじ", ["9:00"]),
-        makeEnQ("じゅうじ", ["10:00"]),
-        makeEnQ("じゅういちじ", ["11:00"]),
-        makeEnQ("じゅうにじ", ["12:00"]),
+        en("いちじ", ["1:00"]),
+        en("にじ", ["2:00"]),
+        en("さんじ", ["3:00"]),
+        en("よじ", ["4:00"]),
+        en("ごじ", ["5:00"]),
+        en("ろくじ", ["6:00"]),
+        en("しちじ", ["7:00"]),
+        en("はちじ", ["8:00"]),
+        en("くじ", ["9:00"]),
+        en("じゅうじ", ["10:00"]),
+        en("じゅういちじ", ["11:00"]),
+        en("じゅうにじ", ["12:00"]),
 
         // new Question("いちじはん", ["half past one", "1:30", "1 30"], "en"),
         // new Question("にじはん", ["half past two", "2:30", "2 30"], "en"),
@@ -1006,10 +1019,10 @@ function getLesson1() {
         new Question("6:00", ["ろくじ"], "jp"),
         new Question("7:00", ["しちじ"], "jp"),
         new Question("8:00", ["はちじ"], "jp"),
-        makeJpQ("9:00", ["くじ"]),
-        makeJpQ("10:00", ["じゅうじ"]),
-        makeJpQ("11:00", ["じゅういちじ"]),
-        makeJpQ("12:00", ["じゅうにじ"]),
+        jp("9:00", ["くじ"]),
+        jp("10:00", ["じゅうじ"]),
+        jp("11:00", ["じゅういちじ"]),
+        jp("12:00", ["じゅうにじ"]),
 
         // new Question("01:30", ["いちじはん"], "jp"),
         // new Question("02:30", ["にじはん"], "jp"),
@@ -1021,33 +1034,33 @@ function getLesson1() {
         new Question("にほんじん", ["japanese people", "japanese person", "japanese"], "en"),
         new Question("アメリカじん", ["american people", "american person", "american"], "en"),
         new Question("かんこくじん", ["korean people", "korean person", "korean"], "en"),
-        makeEnQ("ちゅうごくじん", ["chinese people", "chinese person", "chinese"], "en"),
+        en("ちゅうごくじん", ["chinese people", "chinese person", "chinese"], "en"),
         new Question("イグリスじん", ["british people", "british person", "british"], "en"),
     ];
 
     const countryList = [
-        makeEnQ("くに", ["country"]),
-        makeEnQ("にほん", ["japan"]),
-        makeEnQ("アメリカ", ["america"]),
-        makeEnQ("イギリス", ["britain"]),
-        makeEnQ("かんこく", ["korea"]),
-        makeEnQ("ちゅうごく", ["china"]),
+        en("くに", ["country"]),
+        en("にほん", ["japan"]),
+        en("アメリカ", ["america"]),
+        en("イギリス", ["britain"]),
+        en("かんこく", ["korea"]),
+        en("ちゅうごく", ["china"]),
     ];
 
     const schoolYearList = [
-        makeEnQ("いちねんせい", ["first year", "year 1", "year one", "1st year"]),
-        makeEnQ("にねんせい", ["second year", "year 2", "year two", "2nd year"]),
-        makeEnQ("さんねんせい", ["third year", "year 3", "year three", "3rd year"]),
-        makeEnQ("よねんせい", ["fourth year", "year 4", "year four", "4th year"]),
-        makeEnQ("ごねんせい", ["fifth year", "year 5", "year five", "5th year"]),
-        makeEnQ("ろくねんせい", ["sixth year", "year 6", "year six", "6th year"]),
+        en("いちねんせい", ["first year", "year 1", "year one", "1st year"]),
+        en("にねんせい", ["second year", "year 2", "year two", "2nd year"]),
+        en("さんねんせい", ["third year", "year 3", "year three", "3rd year"]),
+        en("よねんせい", ["fourth year", "year 4", "year four", "4th year"]),
+        en("ごねんせい", ["fifth year", "year 5", "year five", "5th year"]),
+        en("ろくねんせい", ["sixth year", "year 6", "year six", "6th year"]),
     ]
 
     const majorsList = [
-        makeEnQ("せんこう", ["major"]),
-        makeEnQ("アジアけんきゅう", ["asian studies"]),
-        makeEnQ("けいざい", ["economics"]),
-        makeEnQ("こうがく", ["engineering"]),
+        en("せんこう", ["major"]),
+        en("アジアけんきゅう", ["asian studies"]),
+        en("けいざい", ["economics"]),
+        en("こうがく", ["engineering"]),
     ];
 
     return [].concat(
@@ -1064,50 +1077,50 @@ function getLesson1() {
 
 function getLesson2() {
     const pointList = [
-        // makeEnQ("これ", ["this one"]),
-        makeEnQ("それ", ["that one"]),
+        // en("これ", ["this one"]),
+        en("それ", ["that one"]),
 
-        makeEnQ("それは", ["that one is"]),
+        en("それは", ["that one is"]),
 
-        // makeJpQ("this one", ["これ"]),
-        makeJpQ("that one", ["それ"]),
+        // jp("this one", ["これ"]),
+        jp("that one", ["それ"]),
 
-        makeJpQ("that one is", ["それは"]),
+        jp("that one is", ["それは"]),
     ];
 
     const foodList = [
-        makeEnQ("おいしい", ["delicious", "tasty"]),
-        makeEnQ("さかな", ["fish"]),
-        makeEnQ("にく", ["meat"]),
-        makeEnQ("とんかつ", ["pork cutlet"]),
-        makeEnQ("メにゅー", ["menu"]),
-        makeEnQ("やさい", ["vegetable"]),
+        en("おいしい", ["delicious", "tasty"]),
+        en("さかな", ["fish"]),
+        en("にく", ["meat"]),
+        en("とんかつ", ["pork cutlet"]),
+        en("メにゅー", ["menu"]),
+        en("やさい", ["vegetable"]),
         
-        // makeJpQ("美味しい", ["おいしい"]),
-        // makeJpQ("魚", ["さかな"]),
-        // makeJpQ("肉", ["にく"]),
+        // jp("美味しい", ["おいしい"]),
+        // jp("魚", ["さかな"]),
+        // jp("肉", ["にく"]),
 
-        makeJpQ("delicious", ["おいしい"]),
-        makeJpQ("tasty", ["おいしい"]),
-        makeJpQ("fish", ["さかな"]),
-        makeJpQ("meat", ["にく"]),
-        makeJpQ("pork cutlet", ["とんかつ"]),
-        makeJpQ("menu", ["めにゅー"]),
-        makeJpQ("vegetable", ["やさい"]),
+        jp("delicious", ["おいしい"]),
+        jp("tasty", ["おいしい"]),
+        jp("fish", ["さかな"]),
+        jp("meat", ["にく"]),
+        jp("pork cutlet", ["とんかつ"]),
+        jp("menu", ["めにゅー"]),
+        jp("vegetable", ["やさい"]),
     ];
 
     const thingsList = [
-        makeEnQ("かさ", ["umbrella"]),
-        makeEnQ("かばん", ["bag"]),
-        makeEnQ("くつ", ["shoes"]),
-        makeEnQ("さいふ", ["wallet"]),
-        makeEnQ("ジーンズ", ["jeans"]),
+        en("かさ", ["umbrella"]),
+        en("かばん", ["bag"]),
+        en("くつ", ["shoes"]),
+        en("さいふ", ["wallet"]),
+        en("ジーンズ", ["jeans"]),
 
-        makeJpQ("umbrella", ["かさ"]),
-        makeJpQ("bag", ["かばん"]),
-        makeJpQ("shoes", ["くつ"]),
-        makeJpQ("wallet", ["さいふ"]),
-        makeJpQ("jeans", ["じーんず"]),
+        jp("umbrella", ["かさ"]),
+        jp("bag", ["かばん"]),
+        jp("shoes", ["くつ"]),
+        jp("wallet", ["さいふ"]),
+        jp("jeans", ["じーんず"]),
     ];
 
     return [].concat(
@@ -1120,25 +1133,25 @@ function getLesson2() {
 // Reading & Writing Content
 function getLesson1Kanji() {
     const sectionBList = [
-        makeEnQ("たなか", ["tanaka", "Tanaka"]),
-        makeEnQ("やまもと", ["yamamoto", "Yamamoto"]),
-        makeEnQ("さくま", ["sakuma", "Sakuma"]),
-        makeEnQ("たかはし", ["takahashi", "Takahashi"]),
-        makeEnQ("もりかわ", ["morikawa", "Morikawa"]),
-        makeEnQ("くまもと", ["kumamoto", "Kumamoto"]),
-        makeEnQ("おかやま", ["okayama", "Okayama"]),
-        makeEnQ("もりおか", ["morioka", "Morioka"]),
-        makeEnQ("よこはま", ["yokohama"]),
-        makeEnQ("みと", ["mito"]),
+        en("たなか", ["tanaka", "Tanaka"]),
+        en("やまもと", ["yamamoto", "Yamamoto"]),
+        en("さくま", ["sakuma", "Sakuma"]),
+        en("たかはし", ["takahashi", "Takahashi"]),
+        en("もりかわ", ["morikawa", "Morikawa"]),
+        en("くまもと", ["kumamoto", "Kumamoto"]),
+        en("おかやま", ["okayama", "Okayama"]),
+        en("もりおか", ["morioka", "Morioka"]),
+        en("よこはま", ["yokohama"]),
+        en("みと", ["mito"]),
     ];
 
     const sectionCList = [
-        makeEnQ("いちご", ["strawberry", "strawberries"]),
-        makeEnQ("だんご", ["dumpling", "dumplings"]),
-        makeEnQ("ざぶとん", ["cushion"]),
-        makeEnQ("がいこくじん", ["foreigner"]),
-        makeEnQ("たんぽぽ", ["dandelion"]),
-        makeEnQ("がんぺき", ["cliff"]),
+        en("いちご", ["strawberry", "strawberries"]),
+        en("だんご", ["dumpling", "dumplings"]),
+        en("ざぶとん", ["cushion"]),
+        en("がいこくじん", ["foreigner"]),
+        en("たんぽぽ", ["dandelion"]),
+        en("がんぺき", ["cliff"]),
     ];
 
     return [].concat(
@@ -1149,113 +1162,63 @@ function getLesson1Kanji() {
 
 function getLesson3Kanji() {
     const kanjiReadingList = [
-        makeJpQ("一", ["いち", "いっ", "ひと"]),
-        makeJpQ("二", ["に", "ふた"]),
-        makeJpQ("三", ["さん", "みっ"]),
+        jp("一", ["いち", "いっ", "ひと"]),
+        jp("二", ["に", "ふた"]),
+        jp("三", ["さん", "みっ"]),
     ];
 
     const kanjiMeaningList = [
-        makeEnQ("一", ["one"]),
-        makeEnQ("二", ["two"]),
-        makeEnQ("三", ["three"]),
+        en("一", ["one"]),
+        en("二", ["two"]),
+        en("三", ["three"]),
     ];
 
     const vocabReadingListOne = [
-        makeJpQ("一", ["いち"]),
-        makeJpQ("一時", ["いちじ"]),
-        makeJpQ("一年生", ["いちねんせい"]),
-        makeJpQ("一分", ["いっぷん"]),
-        makeJpQ("一つ", ["ひとつ"]),
-    ];
-
-    const vocabReadingListOneCustom = [
-        // makeJpQ("一", ["いち"]),
-        makeJpQ("一時", ["いちじ"]),
-        makeJpQ("一年生", ["いちねんせい"]),
-        makeJpQ("一分", ["いっぷん"]),
-        makeJpQ("一つ", ["ひとつ"]),
-        makeJpQ("一日", ["いちにち"]),
-        makeJpQ("一月", ["いちがつ"]),
-        makeJpQ("１月", ["いちがつ"]),
-        makeJpQ("January", ["いちがつ"]),
+        jp("一", ["いち"]),
+        jp("一時", ["いちじ"]),
+        jp("一年生", ["いちねんせい"]),
+        jp("一分", ["いっぷん"]),
+        jp("一つ", ["ひとつ"]),
     ];
 
     const vocabReadingListTwo = [
-        makeJpQ("二", ["に"]),
-        makeJpQ("二時", ["にじ"]),
-        makeJpQ("二年生", ["にねんせい"]),
-        makeJpQ("二つ", ["ふたつ"]),
-        makeJpQ("二日間", ["ふつかかん"]),
-    ];
-    
-    const vocabReadingListTwoCustom = [
-        // makeJpQ("二", ["に"]),
-        makeJpQ("二時", ["にじ"]),
-        makeJpQ("二年生", ["にねんせい"]),
-        makeJpQ("二つ", ["ふたつ"]),
-        makeJpQ("二日", ["ふつか"]),
-        makeJpQ("二日間", ["ふつかかん"]),
-        makeJpQ("二十", ["にじゅう"]),
-        makeJpQ("二百", ["にひゃく"]),
-        makeJpQ("二月", ["にがつ"]),
-        makeJpQ("２月", ["にがつ"]),
-        makeJpQ("February", ["にがつ"]),
+        jp("二", ["に"]),
+        jp("二時", ["にじ"]),
+        jp("二年生", ["にねんせい"]),
+        jp("二つ", ["ふたつ"]),
+        jp("二日間", ["ふつかかん"]),
     ];
 
     const vocabReadingListThree = [
-        // makeJpQ("三", ["さん"]),
-        makeJpQ("三時", ["さんじ"]),
-        makeJpQ("三年生", ["さんねんせい"]),
-        makeJpQ("三つ", ["みっつ"]),
-        makeJpQ("三月", ["さんがつ"]),
-        makeJpQ("３月", ["さんがつ"]),
-        makeJpQ("March", ["さんがつ"]),
+        jp("三", ["さん"]),
+        jp("三時", ["さんじ"]),
+        jp("三年生", ["さんねんせい"]),
+        jp("三月", ["さんがつ"]),
+        jp("三つ", ["みっつ"]),
     ];
 
     const vocabReadingListFour = [
-        // makeJpQ("四", ["よん"]),
-        makeJpQ("四時", ["よじ"]),
-        makeJpQ("四年生", ["よねんせい"]),
-        makeJpQ("四つ", ["よっつ"]),
-        makeJpQ("四国", ["しこく"]),
-        makeJpQ("四月", ["しがつ"]),
-        makeJpQ("４月", ["しがつ"]),
-        makeJpQ("April", ["しがつ"]),
+        jp("四", ["よん"]),
+        jp("四時", ["よじ"]),
+        jp("四年生", ["よねんせい"]),
+        jp("四月", ["しがつ"]),
+        jp("四つ", ["よっつ"]),
     ];
 
     const vocabReadingListFive = [
-        // makeJpQ("五", ["ご"]),
-
-        makeJpQ("五時", ["ごじ"]),
-        makeJpQ("五歳", ["ごさい"]),
-        makeJpQ("五年生", ["ごねんせい"]),
-        makeJpQ("五つ", ["いつつ"]),
-        makeJpQ("五月", ["ごがつ"]),
-        makeJpQ("５月", ["ごがつ"]),
-        makeJpQ("May", ["ごがつ"]),
+        jp("五", ["ご"]),
+        jp("五時", ["ごじ"]),
+        jp("五月", ["ごがつ"]),
+        jp("五歳", ["ごさい"]),
+        jp("五つ", ["いつつ"]),
     ];
 
     const vocabReadingListSix = [
-        makeJpQ("六", ["ろく"]),
-        makeJpQ("六時", ["ろくじ"]),
-        makeJpQ("六百", ["ろっぴゃく"]),
-        makeJpQ("六分", ["ろっぷん"]),
-        makeJpQ("六つ", ["むっつ"]),
-    ];
-
-    const vocabReadingListSixCustom = [ 
-        // makeJpQ("六", ["ろく"]),
-        
-        makeJpQ("六分", ["ろっぷん"]),
-        // makeJpQ("六時", ["ろくじ"]),
-        makeJpQ("六つ", ["むっつ"]),
-        // makeJpQ("六年生", ["ろくねんせい"]),
-        // makeJpQ("六歳", ["ろくさい"]),
-        // makeJpQ("六十", ["ろくじゅう"]),
-        makeJpQ("六百", ["ろっぴゃく"]),
-        // makeJpQ("六月", ["ろくがつ"]),
-        // makeJpQ("６月", ["ろくがつ"]),
-        // makeJpQ("June", ["ろくがつ"]),
+        jp("六", ["ろく"]),
+        jp("六時", ["ろくじ"]),
+        jp("六百", ["ろっぴゃく"]),
+        jp("六分", ["ろっぷん"]),
+        jp("六つ", ["むっつ"]),
     ];
 
     // Patterns seen:
@@ -1268,18 +1231,88 @@ function getLesson3Kanji() {
     // - hundreds
     // - month
 
+    // extended vocabulary
+    const vocabReadingListOneCustom = [
+        // jp("一", ["いち"]),
+        jp("一時", ["いちじ"]),
+        jp("一年生", ["いちねんせい"]),
+        jp("一分", ["いっぷん"]),
+        jp("一つ", ["ひとつ"]),
+        jp("一日", ["いちにち"]),
+        jp("一月", ["いちがつ"]),
+        jp("１月", ["いちがつ"]),
+        jp("January", ["いちがつ"]),
+    ];
+
+    const vocabReadingListTwoCustom = [
+        // jp("二", ["に"]),
+        jp("二時", ["にじ"]),
+        jp("二年生", ["にねんせい"]),
+        jp("二つ", ["ふたつ"]),
+        jp("二日", ["ふつか"]),
+        jp("二日間", ["ふつかかん"]),
+        jp("二十", ["にじゅう"]),
+        jp("二百", ["にひゃく"]),
+        jp("二月", ["にがつ"]),
+        jp("２月", ["にがつ"]),
+        jp("February", ["にがつ"]),
+    ];
+
+    const vocabReadingListThreeCustom = [
+        jp("三", ["さん"]),
+        jp("三時", ["さんじ"]),
+        jp("三年生", ["さんねんせい"]),
+        jp("三つ", ["みっつ"]),
+        jp("三月", ["さんがつ"]),
+        jp("３月", ["さんがつ"]),
+        jp("March", ["さんがつ"]),
+    ];
+
+    const vocabReadingListFourCustom = [
+        jp("四", ["よん"]),
+        jp("四時", ["よじ"]),
+        jp("四年生", ["よねんせい"]),
+        jp("四つ", ["よっつ"]),
+        jp("四国", ["しこく"]),
+        jp("四月", ["しがつ"]),
+        jp("４月", ["しがつ"]),
+        jp("April", ["しがつ"]),
+    ];
+
+    const vocabReadingListFiveCustom = [
+        jp("五", ["ご"]),
+        jp("五時", ["ごじ"]),
+        jp("五歳", ["ごさい"]),
+        jp("五年生", ["ごねんせい"]),
+        jp("五つ", ["いつつ"]),
+        jp("五月", ["ごがつ"]),
+        jp("５月", ["ごがつ"]),
+        jp("May", ["ごがつ"]),
+    ];
+
+    const vocabReadingListSixCustom = [ 
+        // jp("六", ["ろく"]),
+        
+        jp("六分", ["ろっぷん"]),
+        // jp("六時", ["ろくじ"]),
+        jp("六つ", ["むっつ"]),
+        // jp("六年生", ["ろくねんせい"]),
+        // jp("六歳", ["ろくさい"]),
+        // jp("六十", ["ろくじゅう"]),
+        jp("六百", ["ろっぴゃく"]),
+        // jp("六月", ["ろくがつ"]),
+        // jp("６月", ["ろくがつ"]),
+        // jp("June", ["ろくがつ"]),
+    ];
+
     return [].concat(
         // kanjiReadingList,
         // kanjiMeaningList,
-        // vocabReadingListOne,
-        // vocabReadingListTwo,
-        vocabReadingListThree,
-        vocabReadingListFour,
-        vocabReadingListFive,
-        // vocabReadingListSix,
-
         vocabReadingListOneCustom,
         vocabReadingListTwoCustom,
+        vocabReadingListThreeCustom,
+        vocabReadingListFourCustom,
+        vocabReadingListFiveCustom,
         vocabReadingListSixCustom,
     ); 
 }
@@ -1287,49 +1320,49 @@ function getLesson3Kanji() {
 
 // Extra Topics
 function getGeography() {
-    const mainIslandList = [
-        makeJpQ("本州", ["ほんしゅう"]),
-        makeJpQ("北海道", ["ほっかいど"]),
-        makeJpQ("九州", ["きゅうしゅう"]),
-        makeJpQ("四国", ["しこく"]),
+    const mainIslandsList = [
+        jp("本州", ["ほんしゅう"]),
+        jp("北海道", ["ほっかいど"]),
+        jp("九州", ["きゅうしゅう"]),
+        jp("四国", ["しこく"]),
     ];
 
     const regionsList = [
-        makeJpQ("地方", ["ちほう"]),
-        makeJpQ("北海道", ["ほっかいど"]),
-        makeJpQ("東北", ["とうほく"]),
-        makeJpQ("東北地方", ["とうほくちほう"]),
-        makeJpQ("関東", ["かんとう"]),
-        makeJpQ("関東地方", ["かんとうちほう"]),
-        makeJpQ("中部", ["ちゅうぶ"]),
-        makeJpQ("中部地方", ["ちゅうぶちほう"]),
-        makeJpQ("関西", ["かんさい"]),
-        makeJpQ("関西地方", ["かんさいちほう"]),
-        makeJpQ("中国", ["ちゅうごく"]),
-        makeJpQ("中国地方", ["ちゅうごくちほう"]),
-        makeJpQ("四国", ["しこく"]),
-        makeJpQ("九州", ["きゅうしゅう"]),        
+        jp("地方", ["ちほう"]),
+        jp("北海道", ["ほっかいど"]),
+        jp("東北", ["とうほく"]),
+        jp("東北地方", ["とうほくちほう"]),
+        jp("関東", ["かんとう"]),
+        jp("関東地方", ["かんとうちほう"]),
+        jp("中部", ["ちゅうぶ"]),
+        jp("中部地方", ["ちゅうぶちほう"]),
+        jp("関西", ["かんさい"]),
+        jp("関西地方", ["かんさいちほう"]),
+        jp("中国", ["ちゅうごく"]),
+        jp("中国地方", ["ちゅうごくちほう"]),
+        jp("四国", ["しこく"]),
+        jp("九州", ["きゅうしゅう"]),        
     ];
 
     return [].concat(
-        mainIslandList,
+        mainIslandsList,
         regionsList,
     );
 }
 
 function getOldMonths() {
     const readingList = [
-        makeJpQ("睦月", ["むつき"]),
-        makeJpQ("如月", ["きさらぎ"]),
-        makeJpQ("弥生", ["やよい"]),
-        makeJpQ("卯月", ["うづき"]),
+        jp("睦月", ["むつき"]),
+        jp("如月", ["きさらぎ"]),
+        jp("弥生", ["やよい"]),
+        jp("卯月", ["うづき"]),
     ];
 
     const meaningList = [
-        makeEnQ("睦月", ["January", "january", "mutsuki"]),
-        makeEnQ("如月", ["February", "february", "kisaragi"]),
-        makeEnQ("弥生", ["March", "march", "yayoi"]),
-        makeEnQ("卯月", ["April", "april", "uzuki"]),
+        en("睦月", ["January", "january", "mutsuki"]),
+        en("如月", ["February", "february", "kisaragi"]),
+        en("弥生", ["March", "march", "yayoi"]),
+        en("卯月", ["April", "april", "uzuki"]),
     ];
 
     return [].concat(
@@ -1341,27 +1374,27 @@ function getOldMonths() {
 // lol
 function getGenshinElements() {
     const elementList = [
-        makeEnQ("Fire", ["pyro", "Pyro"]),
-        makeEnQ("Water", ["hydro", "Hydro"]),
-        makeEnQ("Wind", ["anemo", "Anemo"]),
-        makeEnQ("Lightning", ["electro", "Electro"]),
-        makeEnQ("Earth", ["geo", "Geo"]),
-        makeEnQ("Ice", ["cryo", "Cryo"]),
-        makeEnQ("Grass", ["dendro", "Dendro"]),
-        makeEnQ("Grass", ["dendro", "Dendro"]),
-        makeEnQ("Grass", ["dendro", "Dendro"]),
-        makeEnQ("Grass", ["dendro", "Dendro"]),
+        en("Fire", ["pyro", "Pyro"]),
+        en("Water", ["hydro", "Hydro"]),
+        en("Wind", ["anemo", "Anemo"]),
+        en("Lightning", ["electro", "Electro"]),
+        en("Earth", ["geo", "Geo"]),
+        en("Ice", ["cryo", "Cryo"]),
+        en("Grass", ["dendro", "Dendro"]),
+        en("Grass", ["dendro", "Dendro"]),
+        en("Grass", ["dendro", "Dendro"]),
+        en("Grass", ["dendro", "Dendro"]),
 
-        makeEnQ("Pyro", ["fire"]),
-        makeEnQ("Cryo", ["ice"]),
-        makeEnQ("Anemo", ["wind"]),
-        makeEnQ("Electro", ["lightning", "electric"]),
-        makeEnQ("Geo", ["earth"]),
-        makeEnQ("Cryo", ["ice"]),
-        makeEnQ("Dendro", ["grass"]),
-        makeEnQ("Dendro", ["grass"]),
-        makeEnQ("Dendro", ["grass"]),
-        makeEnQ("Dendro", ["grass"]),
+        en("Pyro", ["fire"]),
+        en("Cryo", ["ice"]),
+        en("Anemo", ["wind"]),
+        en("Electro", ["lightning", "electric"]),
+        en("Geo", ["earth"]),
+        en("Cryo", ["ice"]),
+        en("Dendro", ["grass"]),
+        en("Dendro", ["grass"]),
+        en("Dendro", ["grass"]),
+        en("Dendro", ["grass"]),
     ];
 
     return elementList;
@@ -1369,21 +1402,21 @@ function getGenshinElements() {
 
 function getSmtSupportSkills() {
     const supportList = [
-        // makeEnQ("Tarukaja", ["single ally atk +1"]),
-        // makeEnQ("Rakukaja", ["single ally def +1"]),
-        // makeEnQ("Sukukaja", ["single ally acc/ev +1"]),
-        makeEnQ("taru", ["atk"]),
-        makeEnQ("raku", ["def"]),
-        // makeEnQ("suku", ["acc"]),
-        // makeEnQ("kaja", ["single ally"]),
+        // en("Tarukaja", ["single ally atk +1"]),
+        // en("Rakukaja", ["single ally def +1"]),
+        // en("Sukukaja", ["single ally acc/ev +1"]),
+        en("taru", ["atk"]),
+        en("raku", ["def"]),
+        // en("suku", ["acc"]),
+        // en("kaja", ["single ally"]),
 
-        // makeEnQ("single ally atk +1", ["tarukaja"]),
-        // makeEnQ("single ally def +1", ["rakukaja"]),
-        // makeEnQ("single ally acc/eva +1", ["sukukaja"]),
-        makeEnQ("atk", ["taru"]),
-        makeEnQ("def", ["raku"]),
-        // makeEnQ("acc", ["suku"]),
-        // makeEnQ("single ally", ["kaja"]),
+        // en("single ally atk +1", ["tarukaja"]),
+        // en("single ally def +1", ["rakukaja"]),
+        // en("single ally acc/eva +1", ["sukukaja"]),
+        en("atk", ["taru"]),
+        en("def", ["raku"]),
+        // en("acc", ["suku"]),
+        // en("single ally", ["kaja"]),
     ];
 
     return supportList;
