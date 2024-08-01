@@ -1422,6 +1422,29 @@ function getSmtSupportSkills() {
     return supportList;
 }
 
+function katakanaPractice() {
+    const meaningList = [
+        en("ハロー", ["hello"]),
+        en("マイ", ["my"]),
+        en("ネーム", ["name"]),
+        en("イズ", ["is"]),
+        en("マミ", ["mami"]),
+    ];
+
+    const readingList = [
+        jp("hello", ["ハロー"]),
+        jp("my", ["マイ"]),
+        jp("name", ["ネーム"]),
+        jp("is", ["イズ"]),
+        jp("mami", ["マミ"]),
+    ];
+
+    return [].concat(
+        meaningList,
+        // readingList,
+    );
+}
+
 //---[ たんご ]-----------------------------------------------------------------
 
 
@@ -1432,11 +1455,12 @@ function getTest() {
         // ...getNumbers(),
         // ...getNames(),
         // ...getLesson1(),
-        ...getLesson2(),
+        // ...getLesson2(),
         // ...getLesson1Kanji(),
         // ...getLesson3Kanji(),
         // ...getGeography(),
         // ...getSmtSupportSkills(),
+        ...katakanaPractice(),
     ];
 
     return test;
