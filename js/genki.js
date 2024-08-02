@@ -1221,12 +1221,21 @@ function getLesson3Kanji() {
         jp("六つ", ["むっつ"]),
     ];
 
+    const vocabReadingListSeven = [
+        jp("七", ["しち", "なな"]),
+        jp("七時", ["しちじ"]),
+        jp("七月", ["しちがつ"]),
+        jp("七つ", ["ななつ"]),
+        jp("七人", ["ななにん", "しちにん"]),
+    ];
+
     // Patterns seen:
     // - oclock
-    // - minutes
-    // - things
-    // - year in school
-    // - age
+    // - minutes counter
+    // - things counter
+    // - people counter
+    // - year in school (1-6)
+    // - age counter
     // - tens
     // - hundreds
     // - month
@@ -1425,18 +1434,40 @@ function getSmtSupportSkills() {
 function katakanaPractice() {
     const meaningList = [
         en("ハロー", ["hello"]),
+
         en("マイ", ["my"]),
         en("ネーム", ["name"]),
         en("イズ", ["is"]),
         en("マミ", ["mami"]),
+        en("ワット", ["what"]),
+        en("アバウト", ["about"]),
+        en("ユー", ["you"]),
+
+        en("アイ", ["i"]),
+        en("ラブ", ["love"]),
+        en("ベイコン", ["bacon"]),
+
+        en("イフ", ["if"]),
+        en("ドント", ["don't", "dont"]),
+        en("ライク", ["like"]),
+        en("ウェー", ["we"]),
+        en("キャント", ["can't", "cant"]),
+        en("ビー", ["be"]),
+        en("フレンズ", ["friends"]),
+
+
     ];
 
     const readingList = [
         jp("hello", ["ハロー"]),
+
         jp("my", ["マイ"]),
         jp("name", ["ネーム"]),
         jp("is", ["イズ"]),
         jp("mami", ["マミ"]),
+        jp("what", ["ワット"]),
+        jp("about", ["アバウト"]),
+        jp("you", ["ユー"]),
     ];
 
     return [].concat(
