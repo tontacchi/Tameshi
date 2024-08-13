@@ -55,7 +55,6 @@ function displayTest() {
     });
 
     testContainerNode.addEventListener("keydown", (event) => {
-        cLog(event)
         if (event.key === "Enter") {
             if (question.responseLang === "jp") { forceLastHiraganaN(event); }
 
@@ -72,14 +71,16 @@ function displayTest() {
             else { alert("incorrect"); }
         }
 
-        else if (event.key === "F6") {
+        else if (event.key === "]") {
+            event.preventDefault();
             cLog("displayTest - changing input from H -> K");
             const responseDiv = document.querySelector(".response");
 
             responseDiv.removeEventListener("input", changeEnglishToHiragana);
             responseDiv.addEventListener("input", changeEnglishToKatakana);
         }
-        else if (event.key === "F7") {
+        else if (event.key === "[") {
+            event.preventDefault();
             cLog("displayTest - changing input from K -> H");
             const responseDiv = document.querySelector(".response");
 
@@ -106,10 +107,17 @@ function displayQuestion(questionObj) {
     console.log(questionObj);
     if (questionObj.responseLang === "jp") {
         console.log("switched to jp");
+        responseDiv.removeEventListener("input", changeEnglishToKatakana);
         responseDiv.addEventListener("input", changeEnglishToHiragana);
+    }
+    else if (questionObj.responseLang === "katakana") {
+        console.log("switched to katakana");
+        responseDiv.removeEventListener("input", changeEnglishToHiragana);
+        responseDiv.addEventListener("input", changeEnglishToKatakana);
     }
     else {
         responseDiv.removeEventListener("input", changeEnglishToHiragana);
+        responseDiv.removeEventListener("input", changeEnglishToKatakana);
         console.log("displayQuestion - removed language change listener");
     }
 }
@@ -878,7 +886,7 @@ function getNumbers() {
         jp("十二", ["じゅうに"]),
         jp("十三", ["じゅうさん"]),
         jp("十四", ["じゅうよん", "じゅうし"]),
-
+        
     ];
 
     return [
@@ -938,7 +946,16 @@ function getNames() {
 
 // Lesson Content
 function getLesson1() {
-    const schoolList = [
+    // original lists
+    const expressionsList = [
+        en("あのう", ["um"]),
+        en("はい", ["yes"]),
+        en("そうです", ["that's right", "thats right"]),
+        en("そうですか", ["I see", "i see", "is that so", "is that so?"]),
+    ];
+
+    // extended lists
+    const extendedSchoolList = [
         new Question("せんせい", ["teacher", "professor"], "en"),
         new Question("～ねんせい", ["year student", "...year student"], "en"),
         new Question("せんこう", ["major"], "en"),
@@ -978,12 +995,14 @@ function getLesson1() {
     ];
 
     const timeList = [
+        en("じかん", ["time"]),
         new Question("いま", ["now"], "en"),
         new Question("ごぜん", ["A.M.", "am", "AM"], "en"),
         new Question("ごご", ["P.M.", "pm", "PM"], "en"),
         new Question("～じ", ["o'clock", "oclock"], "en"),
         new Question("～はん", ["half past", "half"], "en"),
 
+        jp("time", ["じかん"]),
         new Question("now", ["いま"], "jp"),
         new Question("am", ["ごぜん"], "jp"),
         new Question("pm", ["ごご"], "jp"),
@@ -991,7 +1010,7 @@ function getLesson1() {
         new Question("half past", ["はん"], "jp"),
     ];
 
-    const clockList = [
+    const hoursList = [
         en("いちじ", ["1:00"]),
         en("にじ", ["2:00"]),
         en("さんじ", ["3:00"]),
@@ -1005,11 +1024,18 @@ function getLesson1() {
         en("じゅういちじ", ["11:00"]),
         en("じゅうにじ", ["12:00"]),
 
-        // new Question("いちじはん", ["half past one", "1:30", "1 30"], "en"),
-        // new Question("にじはん", ["half past two", "2:30", "2 30"], "en"),
-        // new Question("さんじはん", ["half past three", "3:30", "3 30"], "en"),
-        // new Question("よじはん", ["half past four", "4:30", "4 40"], "en"),
-
+        new Question("いちじはん", ["half past one", "1:30", "1 30"], "en"),
+        new Question("にじはん", ["half past two", "2:30", "2 30"], "en"),
+        new Question("さんじはん", ["half past three", "3:30", "3 30"], "en"),
+        new Question("よじはん", ["half past four", "4:30", "4 40"], "en"),
+        en("ごじはん", ["5:30"]),
+        en("ろくじはん", ["6:30"]),
+        en("しちじはん", ["7:30"]),
+        en("はちじはん", ["8:30"]),
+        en("くじはん", ["9:30"]),
+        en("じゅうじはん", ["10:30"]),
+        en("じゅういちじはん", ["11:30"]),
+        en("じゅうにじはん", ["12:30"]),
 
         new Question("1:00", ["いちじ"], "jp"),
         new Question("2:00", ["にじ"], "jp"),
@@ -1024,10 +1050,38 @@ function getLesson1() {
         jp("11:00", ["じゅういちじ"]),
         jp("12:00", ["じゅうにじ"]),
 
-        // new Question("01:30", ["いちじはん"], "jp"),
-        // new Question("02:30", ["にじはん"], "jp"),
-        // new Question("03:30", ["さんじはん"], "jp"),
-        // new Question("04:30", ["よじはん"], "jp"),
+        new Question("1:30", ["いちじはん"], "jp"),
+        new Question("2:30", ["にじはん"], "jp"),
+        new Question("3:30", ["さんじはん"], "jp"),
+        new Question("4:30", ["よじはん"], "jp"),
+        jp("5:30", ["ごじはん"]),
+        jp("6:30", ["ろくじはん"]),
+        jp("7:30", ["しちじはん"]),
+        jp("8:30", ["はちじはん"]),
+        jp("9:30", ["くじはん"]),
+        jp("10:30", ["じゅうじはん"]),
+        jp("11:30", ["じゅういちじはん"]),
+        jp("12:30", ["じゅうにじはん"]),
+    ];
+
+    const minutesList = [
+        // en("いっぷん", ["0:01"]),
+        // en("にふん", ["0:02"]),
+        // en("さんぷん", ["0:03"]),
+        // en("よんぷん", ["0:04"]),
+        // en("ごふん", ["0:05"]),
+        // en("ろっぷん", ["0:06"]),
+
+        jp("0:01", ["いっぷん"]),
+        jp("0:02", ["にふん"]),
+        jp("0:03", ["さんぷん"]),
+        jp("0:04", ["よんぷん"]),
+        jp("0:05", ["ごふん"]),
+        jp("0:06", ["ろっぷん"]),
+    ];
+
+    const clockList = [
+
     ];
 
     const ethnicityList = [
@@ -1039,12 +1093,27 @@ function getLesson1() {
     ];
 
     const countryList = [
-        en("くに", ["country"]),
-        en("にほん", ["japan"]),
-        en("アメリカ", ["america"]),
-        en("イギリス", ["britain"]),
-        en("かんこく", ["korea"]),
-        en("ちゅうごく", ["china"]),
+        // en("くに", ["country"]),
+        // en("にほん", ["japan"]),
+        // en("アメリカ", ["america"]),
+        // en("イギリス", ["britain"]),
+        en("カナダ", ["canada"]),
+        // en("かんこく", ["korea"]),
+        // en("ちゅうごく", ["china"]),
+        en("インド", ["india"]),
+        // en("エジプト", ["egypt"]),
+        // en("フィリピン", ["philippines"]),
+
+        // jp("country", ["くに"]),
+        // jp("Japan", ["にほん"]),
+        // ka("America", ["アメリカ"]),
+        // ka("Britain", ["イグリス"]),
+        ka("Canada", ["カナダ"]),
+        // jp("Korea", ["かんこく"]),
+        // jp("China", ["ちゅうごく"]),
+        ka("India", ["インド"]),
+        // ka("Egypt", ["エジプト"]),
+        // ka("Philippines", ["フィリピン"]),
     ];
 
     const schoolYearList = [
@@ -1058,9 +1127,14 @@ function getLesson1() {
 
     const majorsList = [
         en("せんこう", ["major"]),
-        en("アジアけんきゅう", ["asian studies"]),
+        // en("アジアけんきゅう", ["asian studies"]),
         en("けいざい", ["economics"]),
-        en("こうがく", ["engineering"]),
+        // en("こうがく", ["engineering"]), 
+
+        jp("major", ["せんこう"]),
+        // jp("Asian studies", ["アジアけんきゅう"]),
+        jp("Economics", ["けいざい"]),
+        // jp("Engineering", ["こうがく"]),
     ];
 
     return [].concat(
@@ -1068,10 +1142,12 @@ function getLesson1() {
         // institutionList,
         // studentList,
         // personList,
-        timeList,
-        clockList,
-        ethnicityList,
-        countryList,
+        // timeList,
+        // hoursList,
+        minutesList,
+        // ethnicityList,
+        // countryList,
+        // majorsList,
     );
 }
 
@@ -1108,20 +1184,31 @@ function getLesson2() {
     const thingsList = [
         en("かさ", ["umbrella"]),
         en("かばん", ["bag"]),
-        en("くつ", ["shoes"]),
-        en("さいふ", ["wallet"]),
-        en("ジーンズ", ["jeans"]),
+        // en("くつ", ["shoes"]),
+        // en("さいふ", ["wallet"]),
+        // en("ジーンズ", ["jeans"]),
+        // en("じてんしゃ", ["bicycle", "bike"]),
+        en("しんぶん", ["newspaper"]),
+        // en("スマホ", ["smartphone", "mobile"]),
+        // en("Tシャト", ["t-shirt", "t shirt", "tshirt"]),
+
 
         jp("umbrella", ["かさ"]),
         jp("bag", ["かばん"]),
-        jp("shoes", ["くつ"]),
-        jp("wallet", ["さいふ"]),
-        jp("jeans", ["じーんず"]),
+        // jp("shoes", ["くつ"]),
+        // jp("wallet", ["さいふ"]),
+        // ka("jeans", ["ジーンズ"]),
+        // jp("bicycle", ["じてんしゃ"]),
+        // jp("bike", ["じてんしゃ"]),
+        jp("newspaper", ["しんぶん"]),
+        // ka("smartphone", ["スマホ"]),
+        // ka("mobile", ["スマホ"]),   
+        // ka("T-shirt", ["tシャツ"]),
     ];
 
     return [].concat(
-        pointList,
-        foodList,
+        // pointList,
+        // foodList,
         thingsList,
     );
 }
@@ -1455,20 +1542,20 @@ function katakanaPractice() {
     ];
 
     const readingList = [
-        jp("hello", ["ハロー"]),
+        ka("hello", ["ハロー"]),
 
-        jp("my", ["マイ"]),
-        jp("name", ["ネーム"]),
-        jp("is", ["イズ"]),
-        jp("mami", ["マミ"]),
-        jp("what", ["ワット"]),
-        jp("about", ["アバウト"]),
-        jp("you", ["ユー"]),
+        ka("my", ["マイ"]),
+        ka("name", ["ネーム"]),
+        ka("is", ["イズ"]),
+        ka("mami", ["マミ"]),
+        ka("what", ["ワット"]),
+        ka("about", ["アバウト"]),
+        ka("you", ["ユー"]),
     ];
 
     return [].concat(
-        meaningList,
-        // readingList,
+        // meaningList,
+        readingList,
     );
 }
 
@@ -1482,12 +1569,12 @@ function getTest() {
         // ...getNumbers(),
         // ...getNames(),
         // ...getLesson1(),
-        // ...getLesson2(),
+        ...getLesson2(),
         // ...getLesson1Kanji(),
         // ...getLesson3Kanji(),
         // ...getGeography(),
         // ...getSmtSupportSkills(),
-        ...katakanaPractice(),
+        // ...katakanaPractice(),
     ];
 
     return test;
