@@ -978,13 +978,13 @@ function getLesson1() {
 
     const studentList = [
         new Question("がくせい",      ["student"], "en"),
-        new Question("しょうがくせい", ["elementary school student", "primary school student", "grade school student", "elementary schooler"], "en"),
-        new Question("ちゅうがくせい", ["middle school student", "junior high school student", "lower secondary school student", "middle schooler"], "en"),
-        new Question("こうこうせい",   ["high school student", "senior high school student", "secondary school student", "high schooler"], "en"),
+        new Question("しょうがくせい", ["elem", "elementary school student", "primary school student", "grade school student", "elementary schooler"], "en"),
+        new Question("ちゅうがくせい", ["ms", "mser", "middle school student", "junior high school student", "lower secondary school student", "middle schooler"], "en"),
+        new Question("こうこうせい",   ["hs", "hser", "high school student", "senior high school student", "secondary school student", "high schooler"], "en"),
         new Question("じょしこうせい", ["female high school student", "high school girl", "female high schooler"], "en"),
         new Question("だいがくせい",   ["college student", "university student"], "en"),
         new Question("りゅうがくせい", ["international student", "exchange student"], "en"),
-        en("だいがくいんせ", ["graduate student", "grad student"]),
+        en("だいがくいんせい", ["graduate student", "grad student"]),
     ];
 
     const personList = [
@@ -1140,12 +1140,12 @@ function getLesson1() {
     return [].concat(
         // schoolList,
         // institutionList,
-        // studentList,
+        studentList,
         // personList,
         // timeList,
         // hoursList,
         minutesList,
-        // ethnicityList,
+        ethnicityList,
         // countryList,
         // majorsList,
     );
@@ -1568,7 +1568,7 @@ function getTest() {
         // ...getGreetings(),
         // ...getNumbers(),
         // ...getNames(),
-        // ...getLesson1(),
+        ...getLesson1(),
         ...getLesson2(),
         // ...getLesson1Kanji(),
         // ...getLesson3Kanji(),

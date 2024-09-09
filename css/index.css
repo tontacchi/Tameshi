@@ -1,0 +1,107 @@
+html, body {
+    min-height: 99vh;
+
+    padding: 0px;
+    margin:  0px;
+
+    font-family: "Poppins", sans-serif;
+    font-weight: 200;
+    font-style: normal;
+}
+
+html {
+    background-color: rgb(19, 19, 19);
+    color: white;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+.page-container {
+    height: 99%;
+
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.nav-bar {
+    height: 20%;
+
+    display: flex;
+    flex-direction: row;
+}
+
+.nav-bar-left {
+    display: flex;
+    
+    flex: 1;
+}
+
+.logo {
+    align-items: center;
+    justify-content: center;
+
+    margin: 10px;
+}
+
+.logo-svg {
+    fill: #bd84e3;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav-bar-right {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    flex: 1;
+}
+
+.decks-box {
+    border: 1px solid #bd84e3;
+    border-radius: 50px;
+    background-color: #101010;
+    color: #bd84e3;
+    
+    width:  75px;
+    height: 30px;
+
+    margin-right: 5px; 
+    
+    display: grid;
+    place-items: center;
+}
+
+#user-icon {
+    border-radius: 50px;
+    width:  50px;
+    height: 50px;
+
+    margin: 10px;
+
+    background-color: rgb(111, 220, 111);
+}
+
+.main-body {
+    flex: 1;
+}
+
+.footer {
+    display: flex;
+    justify-content: center;
+}
+
+.github-icon {
+    fill: white;
+}
+
+/* Testing */
+/* body { border: 5px solid white; }
+.page-container { border: 2px solid red }
+.nav-bar, .main-body, .footer { border: 2px solid rgb(37, 162, 203); }
+.nav-bar-left, .nav-bar-right { border: 2px solid lightgreen; } */
